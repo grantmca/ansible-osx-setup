@@ -56,39 +56,19 @@
       community.general.homebrew:
         name: [
           'autoconf',
-          'automake',
-          'aws-iam-authenticator',
-          'awscli',
-          'bfg',
           'coreutils',
-          'curl',
-          'dbt@0.18.0',
-          'direnv',
-          'dnsmasq',
-          'fzf',
-          'gnu-time',
-          'gpg',
-          'heroku',
           'htop',
-          'imagemagick@6',
-          'kubectx',
-          'kubernetes-cli',
-          'kubernetes-helm',
           'libtool',
-          'libxslt',
-          'libyaml',
-          'mas',
-          'openssl' ,
+          'openssl',
           'pkg-config',
           'postgresql',
-          'rcm',
           'readline',
-          'redis',
-          'sqlite3',
-          'tmux',
-          'unixodbc',
+          'sqlite',
+          'tree',
           'unzip',
           'vim',
+          'pipenv',
+          'pyenv',
           'watchman',
           'xz',
           'yarn',
@@ -103,37 +83,38 @@
       with_items:
         - 497799835 # xcode
 
-    - name: Create a default VSCode configuration
-      template:
-        src: templates/vscode-settings.json.j2
-        dest: /Users/{{ lookup('env', 'USER') }}/Library/Application Support/Code/User/settings.json
-        owner: "{{ lookup('env', 'USER') }}"
-        force: yes
+    # - name: Create a default VSCode configuration
+    #   template:
+    #     src: templates/vscode-settings.json.j2
+    #     dest: /Users/{{ lookup('env', 'USER') }}/Library/Application Support/Code/User/settings.json
+    #     owner: "{{ lookup('env', 'USER') }}"
+    #     force: yes
 
 
     # Add something which ensures path is set here
     - name: Install VSCode extensions
       shell: code --install-extension {{ item }}
       with_items:
-        - apollographql.vscode-apollo
-        - bradlc.vscode-tailwindcss
-        - castwide.solargraph
-        - clinyong.vscode-css-modules
-        - eamodio.gitlens
-        - jakebecker.elixir-ls
-        - kaiwood.endwise
-        - karunamurti.haml
-        - ms-vscode-remote.vscode-remote-extensionpack
-        - ms-vscode.vscode-typescript-tslint-plugin
-        - msjsdiag.debugger-for-chrome
-        - rebornix.ruby
-        - richie5um2.vscode-sort-json
-        - Tyriar.sort-lines
+        - abusaidm.html-snippets
+        - alexcvzz.vscode-sqlite
+        - batisteo.vscode-django
+        - ecmel.vscode-html-css
+        - GitHub.copilot
+        - kiteco.kite
+        - mohsen1.prettify-json
+        - ms-azuretools.vscode-docker
+        - ms-dotnettools.csharp
+        - ms-python.python
+        - ms-python.vscode-pylance
+        - ms-toolsai.jupyter
+        - ms-toolsai.jupyter-keymap
+        - ms-toolsai.jupyter-renderers
+        - ms-vscode-remote.remote-containers
+        - ms-vscode.cpptools
+        - mtxr.sqltools
+        - ritwickdey.LiveServer
+        - sidthesloth.html5-boilerplate
         - vscodevim.vim
-        - wholroyd.jinja
-        - wingrunr21.vscode-ruby
-        - xabikos.javascriptsnippets
-        - streetsidesoftware.code-spell-checker
-        - fabiospampinato.vscode-todo-plus
+
 
 
