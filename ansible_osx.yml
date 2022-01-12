@@ -29,22 +29,22 @@
         name: "{{ item }}"
       ignore_errors: yes
       with_items:
-        - docker
-        - google-chrome
-        - slack
-        - sublime-text
-        - telegram
         - visual-studio-code
-        - vlc
+        - discord
+        - docker
+        - sublime-text
+        - google-chrome
+        - microsoft-office
+        - slack
+        - telegram
         - zoom
         - autodesk-fusion360
         - spotify
-        - microsoft-office
-        - discord
         - obs
         - virtualbox
         - virtualbox-extension-pack
         - telegram-desktop
+        - vlc
         - microsoft-remote-desktop
         - quicken
         - rectangle
@@ -78,10 +78,6 @@
         state: present
         update_homebrew: yes
 
-    - name: "Install from Mac app store"
-      shell: mas install {{ item }}
-      with_items:
-        - 497799835 # xcode
 
     # - name: Create a default VSCode configuration
     #   template:
