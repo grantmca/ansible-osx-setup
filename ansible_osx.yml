@@ -57,6 +57,7 @@
         name: [
           'autoconf',
           'coreutils',
+          'mas',
           'htop',
           'libtool',
           'openssl',
@@ -86,6 +87,12 @@
     #     owner: "{{ lookup('env', 'USER') }}"
     #     force: yes
 
+    - name: "Install from Mac app store"
+      shell: mas install {{ item }}
+      with_items:
+        - 497799835 # xcode
+        - 1274495053 # Microsoft To Do
+        - 1444383602 #GoodNotes 5
 
     # Add something which ensures path is set here
     - name: Install VSCode extensions
@@ -95,7 +102,6 @@
         - alexcvzz.vscode-sqlite
         - batisteo.vscode-django
         - ecmel.vscode-html-css
-        - GitHub.copilot
         - kiteco.kite
         - mohsen1.prettify-json
         - ms-azuretools.vscode-docker
@@ -111,6 +117,3 @@
         - ritwickdey.LiveServer
         - sidthesloth.html5-boilerplate
         - vscodevim.vim
-
-
-
