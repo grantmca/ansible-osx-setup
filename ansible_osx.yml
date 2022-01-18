@@ -63,6 +63,7 @@
           'openssl',
           'pkg-config',
           'postgresql',
+          'qemu',
           'readline',
           'sqlite',
           'tree',
