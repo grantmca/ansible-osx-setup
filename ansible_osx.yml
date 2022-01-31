@@ -30,6 +30,7 @@
       ignore_errors: yes
       with_items:
         - visual-studio-code
+        - balenaetcher
         - discord
         - docker
         - sublime-text
@@ -46,6 +47,7 @@
         - telegram-desktop
         - vlc
         - microsoft-remote-desktop
+        - microsoft-teams	
         - quicken
         - rectangle
         - macs-fan-control
@@ -57,21 +59,27 @@
         name: [
           'autoconf',
           'coreutils',
+          'htop',
+          'btop',
           'mas',
           'htop',
           'libtool',
           'openssl',
           'pkg-config',
           'postgresql',
+          'pipenv',
+          'pyenv',
           'qemu',
           'readline',
           'sqlite',
           'tree',
+          'nmap',
           'unzip',
           'vim',
           'pipenv',
           'pyenv',
           'watchman',
+          'openconnect',
           'xz',
           'yarn',
           'zlib',
