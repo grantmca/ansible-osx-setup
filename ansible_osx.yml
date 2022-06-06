@@ -31,6 +31,7 @@
       with_items:
         - visual-studio-code
         - balenaetcher
+        - bitwarden
         - discord
         - docker
         - sublime-text
@@ -52,6 +53,10 @@
         - rectangle
         - macs-fan-control
         - wireshark
+        - zotero
+        - balenaetcher
+        - tigervnc-viewer
+
 
 
     - name: "Install homebrew packages"
@@ -84,6 +89,8 @@
           'yarn',
           'zlib',
           'zsh',
+          'tiger-vnc',
+          'bitwarden-cli'
         ]
         state: present
         update_homebrew: yes
@@ -99,7 +106,7 @@
     - name: "Install from Mac app store"
       shell: mas install {{ item }}
       with_items:
-        - 497799835 # xcode
+        # - 497799835 # xcode
         - 1274495053 # Microsoft To Do
         - 1444383602 #GoodNotes 5
 
