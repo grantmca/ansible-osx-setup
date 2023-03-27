@@ -24,40 +24,23 @@
           weaveworks/tap,
         ]
 
-    - name: Install core packages via brew casks
+    - name: 'Install core packages via brew casks'
       community.general.homebrew_cask:
         name: "{{ item }}"
       ignore_errors: yes
       with_items:
-        - visual-studio-code
-        - balenaetcher
         - bitwarden
         - discord
         - docker
-        - sublime-text
         - google-chrome
         - microsoft-office
         - slack
-        - telegram
         - zoom
-        - autodesk-fusion360
         - spotify
         - obs
-        - virtualbox
-        - virtualbox-extension-pack
-        - telegram-desktop
-        - vlc
-        - microsoft-remote-desktop
-        - microsoft-teams	
         - quicken
-        - rectangle
+        - amethyst
         - macs-fan-control
-        - wireshark
-        - zotero
-        - balenaetcher
-        - tigervnc-viewer
-
-
 
     - name: "Install homebrew packages"
       community.general.homebrew:
@@ -65,9 +48,7 @@
           'autoconf',
           'coreutils',
           'htop',
-          'btop',
           'mas',
-          'htop',
           'libtool',
           'openssl',
           'pkg-config',
@@ -79,57 +60,15 @@
           'sqlite',
           'tree',
           'nmap',
+          'neovim',
           'unzip',
           'vim',
           'pipenv',
           'pyenv',
-          'watchman',
           'openconnect',
-          'xz',
           'yarn',
-          'zlib',
           'zsh',
-          'tiger-vnc',
           'bitwarden-cli'
         ]
         state: present
         update_homebrew: yes
-
-
-    # - name: Create a default VSCode configuration
-    #   template:
-    #     src: templates/vscode-settings.json.j2
-    #     dest: /Users/{{ lookup('env', 'USER') }}/Library/Application Support/Code/User/settings.json
-    #     owner: "{{ lookup('env', 'USER') }}"
-    #     force: yes
-
-    - name: "Install from Mac app store"
-      shell: mas install {{ item }}
-      with_items:
-        # - 497799835 # xcode
-        - 1274495053 # Microsoft To Do
-        - 1444383602 #GoodNotes 5
-
-    # Add something which ensures path is set here
-    - name: Install VSCode extensions
-      shell: code --install-extension {{ item }}
-      with_items:
-        - abusaidm.html-snippets
-        - alexcvzz.vscode-sqlite
-        - batisteo.vscode-django
-        - ecmel.vscode-html-css
-        - kiteco.kite
-        - mohsen1.prettify-json
-        - ms-azuretools.vscode-docker
-        - ms-dotnettools.csharp
-        - ms-python.python
-        - ms-python.vscode-pylance
-        - ms-toolsai.jupyter
-        - ms-toolsai.jupyter-keymap
-        - ms-toolsai.jupyter-renderers
-        - ms-vscode-remote.remote-containers
-        - ms-vscode.cpptools
-        - mtxr.sqltools
-        - ritwickdey.LiveServer
-        - sidthesloth.html5-boilerplate
-        - vscodevim.vim
