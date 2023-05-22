@@ -22,6 +22,7 @@
           homebrew/cask-versions,
           thoughtbot/formulae,
           weaveworks/tap,
+          homebrew/cask-fonts,
         ]
 
     - name: 'Install core packages via brew casks'
@@ -38,9 +39,10 @@
         - zoom
         - spotify
         - obs
-        - quicken
-        - amethyst
         - macs-fan-control
+        - alacritty
+        - font-fira-code-nerd-font
+        - raindropio
 
     - name: "Install homebrew packages"
       community.general.homebrew:
@@ -68,7 +70,29 @@
           'openconnect',
           'yarn',
           'zsh',
-          'bitwarden-cli'
+          'bitwarden-cli',
+          'tmux',
+          'nmap',
+          'mysql',
+          'neofetch',
+          'bat',
+          'ripgrep',
+          'ruby',
+          'sc-im',
+
         ]
         state: present
         update_homebrew: yes
+
+    - name: Ensure Git is installed
+      package:
+        name: git
+        state: present
+
+    - name: 'Load dotfile from bare git'
+      include_role:
+        name: lsevcik.dotfiles
+      vars:
+        dotfiles_repo: 'https://github.com/grantmca/.cfg'
+        dotfiles_repo_local_destination: '$HOME/.cfg'
+        dotfiles_repo_version: 'master'

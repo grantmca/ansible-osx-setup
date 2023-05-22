@@ -20,12 +20,10 @@ It's important to note that this isn't designed to be particularly robust, parti
 
 The easiest way to understand what's installed is to read the contents of `ansible_osx.yml`, this configuration is fairly specific to the range of development I do personally, but may serve as a useful starting point for others. The core components are:
 
-- ZSH + Oh My Zsh as the primary shell
+- Starship as the primary shell
 - Homebrew for package management
-- ASDF for version management (along with plugins and default versions for ruby, python, javascript, elixir and erlang)
-- Virtualbox, Vagrant and Docker
-- VSCode + default plugins and configuration
-- A selection of Android SDK's
+- Docker
+- Neovim + default plugins and configuration
 - Lots of other tools and utilities
 
 ## Customising
