@@ -1,7 +1,8 @@
 ---
+roles: 
+  - name: lsevcik.dotfiles
 collections:
   - name: https://github.com/ansible-collections/community.general.git
     type: git
     version: main
   - name: geerlingguy.mac
-  - name: lsevcik.dotfiles

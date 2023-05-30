@@ -43,6 +43,7 @@
         - alacritty
         - font-fira-code-nerd-font
         - raindropio
+        - tigervnc-viewer
 
     - name: "Install homebrew packages"
       community.general.homebrew:
@@ -52,20 +53,22 @@
           'htop',
           'mas',
           'libtool',
+          'python',
           'openssl',
           'pkg-config',
           'postgresql',
-          'pipenv',
           'pyenv',
           'qemu',
           'readline',
           'sqlite',
+          'jq',
           'tree',
           'nmap',
           'neovim',
           'unzip',
           'vim',
           'pipenv',
+          'git',
           'pyenv',
           'openconnect',
           'yarn',
@@ -75,11 +78,17 @@
           'nmap',
           'mysql',
           'neofetch',
+          'rbenv',
+          'spotify-tui',
+          'yabai',
+          'zk',
+          'zsh',
+          'skhd',
+          'fzf',
           'bat',
           'ripgrep',
           'ruby',
           'sc-im',
-
         ]
         state: present
         update_homebrew: yes
@@ -89,10 +98,43 @@
         name: git
         state: present
 
-    - name: 'Load dotfile from bare git'
+    - name: Load dotfile from bare git
       include_role:
         name: lsevcik.dotfiles
       vars:
-        dotfiles_repo: 'https://github.com/grantmca/.cfg'
-        dotfiles_repo_local_destination: '$HOME/.cfg'
-        dotfiles_repo_version: 'master'
+        dotfiles_repo: "https://github.com/grantmca/.cfg"
+        dotfiles_repo_version: "master"
+        dotfiles_home: "{{ ansible_env.HOME }}"
+        dotfiles_repo_local_destination: "{{ ansible_env.HOME }}/.cfg/"
+
+
+    - name: Create symlink for .zshrc
+      file:
+        src: "{{ ansible_env.HOME }}/.zshrc"
+        dest: "{{ ansible_env.HOME }}/.config/zsh/.zshrc"
+        state: link
+        force: yes
+
+    - name: Create Developer directory
+      file:
+        path: "{{ ansible_env.HOME }}/Developer"
+        state: directory
+        mode: 0755
+   
+    - name: Clone Human Essentials
+      git:
+        repo: "https://github.com/grantmca/human-essentials"
+        dest: "{{ ansible_env.HOME }}/Development/human-essentials"
+        version: main 
+
+    - name: Clone Keyboard Config
+      git:
+        repo: "https://github.com/grantmca/zmk-config"
+        dest: "{{ ansible_env.HOME }}/Development/zmk-config"
+        version: master 
+
+    - name: Clone Playbook Setup
+      git:
+        repo: "https://github.com/grantmca/ansible-osx-setup"
+        dest: "{{ ansible_env.HOME }}/Development/ansible-osx-setup"
+        version: master 
