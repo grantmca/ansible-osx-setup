@@ -23,6 +23,7 @@
           thoughtbot/formulae,
           weaveworks/tap,
           homebrew/cask-fonts,
+          koekeishiya/formulae,
         ]
 
     - name: 'Install core packages via brew casks'
@@ -34,16 +35,19 @@
         - discord
         - docker
         - google-chrome
-        - microsoft-office
+        - libreoffice
         - slack
         - zoom
         - spotify
         - obs
         - macs-fan-control
         - alacritty
+        - wezterm
         - font-fira-code-nerd-font
         - raindropio
         - tigervnc-viewer
+        - thunderbird
+        - gimp
 
     - name: "Install homebrew packages"
       community.general.homebrew:
@@ -120,21 +124,30 @@
         path: "{{ ansible_env.HOME }}/Developer"
         state: directory
         mode: 0755
-   
+
+    - name: Clone TPM repository
+      git:
+        repo: 'https://github.com/tmux-plugins/tpm.git'
+        dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+      tags: tmux  
+
     - name: Clone Human Essentials
       git:
         repo: "https://github.com/grantmca/human-essentials"
-        dest: "{{ ansible_env.HOME }}/Development/human-essentials"
+        dest: "{{ ansible_env.HOME }}/Developer/human-essentials"
         version: main 
 
     - name: Clone Keyboard Config
       git:
         repo: "https://github.com/grantmca/zmk-config"
-        dest: "{{ ansible_env.HOME }}/Development/zmk-config"
+        dest: "{{ ansible_env.HOME }}/Developer/zmk-config"
         version: master 
 
-    - name: Clone Playbook Setup
-      git:
-        repo: "https://github.com/grantmca/ansible-osx-setup"
-        dest: "{{ ansible_env.HOME }}/Development/ansible-osx-setup"
-        version: master 
+    - name: Start Services For WM
+      command: skhd --start-service && yabai --start-service
+
+    # - name: Clone Playbook Setup
+    #   git:
+    #     repo: "https://github.com/grantmca/ansible-osx-setup"
+    #     dest: "{{ ansible_env.HOME }}/Developer/ansible-osx-setup"
+    #     version: master 
