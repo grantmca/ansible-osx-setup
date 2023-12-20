@@ -35,18 +35,16 @@
         - discord
         - docker
         - google-chrome
-        - libreoffice
+        - firefox
         - slack
         - zoom
         - spotify
-        - obs
         - macs-fan-control
-        - alacritty
         - wezterm
         - font-fira-code-nerd-font
         - raindropio
         - tigervnc-viewer
-        - thunderbird
+        - microsoft-outlook
         - gimp
 
     - name: "Install homebrew packages"
@@ -62,7 +60,6 @@
           'pkg-config',
           'postgresql',
           'pyenv',
-          'qemu',
           'readline',
           'sqlite',
           'jq',
@@ -79,13 +76,11 @@
           'zsh',
           'bitwarden-cli',
           'tmux',
-          'nmap',
           'mysql',
           'neofetch',
           'rbenv',
           'spotify-tui',
           'yabai',
-          'zk',
           'zsh',
           'skhd',
           'fzf',
@@ -131,11 +126,11 @@
         dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
       tags: tmux  
 
-    - name: Clone Human Essentials
-      git:
-        repo: "https://github.com/grantmca/human-essentials"
-        dest: "{{ ansible_env.HOME }}/Developer/human-essentials"
-        version: main 
+    # - name: Clone Human Essentials
+    #   git:
+    #     repo: "https://github.com/grantmca/human-essentials"
+    #     dest: "{{ ansible_env.HOME }}/Developer/human-essentials"
+    #     version: main 
 
     - name: Clone Keyboard Config
       git:
