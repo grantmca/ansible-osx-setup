@@ -34,15 +34,14 @@
         - bitwarden
         - discord
         - docker
-        - google-chrome
-        - firefox
+        - firefox 
+        - libreoffice
         - slack
         - zoom
         - spotify
         - macs-fan-control
         - wezterm
         - font-fira-code-nerd-font
-        - raindropio
         - tigervnc-viewer
         - microsoft-outlook
         - gimp
@@ -67,7 +66,6 @@
           'nmap',
           'neovim',
           'unzip',
-          'vim',
           'pipenv',
           'git',
           'pyenv',
@@ -87,7 +85,9 @@
           'bat',
           'ripgrep',
           'ruby',
+          'solargraph',
           'sc-im',
+          'stow',
         ]
         state: present
         update_homebrew: yes
@@ -97,23 +97,6 @@
         name: git
         state: present
 
-    - name: Load dotfile from bare git
-      include_role:
-        name: lsevcik.dotfiles
-      vars:
-        dotfiles_repo: "https://github.com/grantmca/.cfg"
-        dotfiles_repo_version: "master"
-        dotfiles_home: "{{ ansible_env.HOME }}"
-        dotfiles_repo_local_destination: "{{ ansible_env.HOME }}/.cfg/"
-
-
-    - name: Create symlink for .zshrc
-      file:
-        src: "{{ ansible_env.HOME }}/.zshrc"
-        dest: "{{ ansible_env.HOME }}/.config/zsh/.zshrc"
-        state: link
-        force: yes
-
     - name: Create Developer directory
       file:
         path: "{{ ansible_env.HOME }}/Developer"
@@ -121,19 +104,13 @@
         mode: 0755
 
     - name: Clone TPM repository
-      git:
+      ansible.builtin.git:
         repo: 'https://github.com/tmux-plugins/tpm.git'
         dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
       tags: tmux  
 
-    # - name: Clone Human Essentials
-    #   git:
-    #     repo: "https://github.com/grantmca/human-essentials"
-    #     dest: "{{ ansible_env.HOME }}/Developer/human-essentials"
-    #     version: main 
-
     - name: Clone Keyboard Config
-      git:
+      ansible.builtin.git:
         repo: "https://github.com/grantmca/zmk-config"
         dest: "{{ ansible_env.HOME }}/Developer/zmk-config"
         version: master 
@@ -141,8 +118,8 @@
     - name: Start Services For WM
       command: skhd --start-service && yabai --start-service
 
-    # - name: Clone Playbook Setup
-    #   git:
-    #     repo: "https://github.com/grantmca/ansible-osx-setup"
-    #     dest: "{{ ansible_env.HOME }}/Developer/ansible-osx-setup"
-    #     version: master 
+    - name: Clone dotfiles
+      ansible.builtin.git:
+        repo: 'https://github.com/grantmca/.dotfiles.git'
+        dest: "{{ ansible_env.HOME }}/.dotfiles"
+
